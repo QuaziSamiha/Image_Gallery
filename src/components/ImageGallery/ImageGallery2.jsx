@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Draggable } from "react-drag-reorder";
-
 import img1 from "../../assets/images/image-1.png";
 import img2 from "../../assets/images/image-2.png";
 import img3 from "../../assets/images/image-3.png";
@@ -12,42 +10,27 @@ import img8 from "../../assets/images/image-8.webp";
 import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
+// import { FaCheckSquare, FaSquare } from "react-icons/fa";
+import { Draggable } from "react-drag-reorder";
 
 const ImageGallery2 = () => {
   const [isSelected, setIsSelected] = useState(0);
-  const images = [img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
-
-  const renderImages = () => {
-    const layout = [];
-    for (let i = 0; i < images.length; i++) {
-      const image = images[i];
-      const isEven = i % 2 === 0;
-
-      layout.push(
-        <div
-          key={i}
-          className={`flex justify-center items-center p-2 ${
-            isEven ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
-          }`}
-        >
-          <Draggable key={i} onDrag={() => handleDrag(i)}>
-            <img
-              className="border border-[#ced0d4] rounded-lg h-32 w-32"
-              src={image}
-              alt=""
-            />
-          </Draggable>
-        </div>
-      );
-    }
-    return layout;
-  };
-
-  const handleDrag = (index) => {
-    // Handle image reordering logic here
-    console.log("Image at index", index, "is being dragged.");
-  };
-
+  const [isHovered, setIsHovered] = useState(false);
+  const min = 1;
+  const images = [
+    { id: 1, image: img1 },
+    { id: 2, image: img2 },
+    { id: 7, image: img3 },
+    { id: 3, image: img4 },
+    { id: 4, image: img5 },
+    { id: 5, image: img6 },
+    { id: 6, image: img7 },
+    { id: 8, image: img8 },
+    { id: 9, image: img9 },
+    { id: 10, image: img10 },
+    { id: 11, image: img11 },
+  ];
+  // console.log(images);
   return (
     <>
       <div className="w-4/6">
@@ -58,25 +41,47 @@ const ImageGallery2 = () => {
                 <div className="flex justify-center items-center text-bold">
                   <div className="py-3 px-8">
                     {isSelected > 0 ? (
-                      <h1>{isSelected} Files Selected</h1>
+                      <>
+                        <h1>{isSelected} Files Selected</h1>
+                      </>
                     ) : (
-                      <h1>Image Gallery</h1>
+                      <>
+                        {" "}
+                        <h1>Image Gallery</h1>
+                      </>
                     )}
                   </div>
                 </div>
                 <div className="flex justify-center items-center text-bold">
                   <div className="py-3 px-8">
-                    {isSelected > 0 && (
-                      <h1>
-                        <small className="text-[#ef7464]">Delete Files</small>
-                      </h1>
-                    )}
+                    <h1 className={`${isSelected > 0 ? "" : "hidden"}`}>
+                      <small className="text-[#ef7464]">Delete Files</small>
+                    </h1>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-5 grid-rows-3">{renderImages()}</div>
+            <div className="grid grid-cols-5 grid-rows-3">
+              {images.map((image) => (
+                <div
+                  key={image.id}
+                  className={`${
+                    image.id === min
+                      ? "col-span-2 row-span-2 flex justify-center items-center p-2"
+                      : "flex justify-center items-center p-2"
+                  }`}
+                >
+                  <img
+                    className={`${
+                      image.id === min ? "h-72 w-72" : "h-32 w-32"
+                    } border border-[#ced0d4] rounded-lg`}
+                    src={image.image}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

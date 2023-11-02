@@ -81,11 +81,7 @@ const ImageGallery = () => {
                       key={image.id}
                       className="flex justify-center items-center p-2"
                     >
-                      <img
-                        className="border border-[#ced0d4] rounded-lg h-32 w-32 "
-                        src={image.image}
-                        alt=""
-                      />
+                      <img className="" src={image.image} alt="" />
                     </div>
                   )
                 )}
