@@ -10,9 +10,11 @@ import img8 from "../../assets/images/image-8.webp";
 import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
+// import { FaCheckSquare, FaSquare } from "react-icons/fa";
 
 const ImageGallery = () => {
   const [isSelected, setIsSelected] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const images = [img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
   // console.log(images);
   return (
@@ -55,9 +57,12 @@ const ImageGallery = () => {
               </div>
               {images.map((image, index) => (
                 <div
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
                   key={index}
                   className="flex justify-center items-center p-2"
                 >
+                  {/* {isHovered && <FaSquare />} */}
                   <img
                     className="border border-[#ced0d4] rounded-lg h-32 w-32 "
                     src={image}
