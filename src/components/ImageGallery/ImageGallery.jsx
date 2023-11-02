@@ -11,11 +11,25 @@ import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
 // import { FaCheckSquare, FaSquare } from "react-icons/fa";
+import { Draggable } from "react-drag-reorder";
 
 const ImageGallery = () => {
   const [isSelected, setIsSelected] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const images = [img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
+  const min = 1;
+  const images = [
+    { id: 1, image: img1 },
+    { id: 2, image: img2 },
+    { id: 7, image: img3 },
+    { id: 3, image: img4 },
+    { id: 4, image: img5 },
+    { id: 5, image: img6 },
+    { id: 6, image: img7 },
+    { id: 8, image: img8 },
+    { id: 9, image: img9 },
+    { id: 10, image: img10 },
+    { id: 11, image: img11 },
+  ];
   // console.log(images);
   return (
     <>
@@ -47,29 +61,35 @@ const ImageGallery = () => {
                 </div>
               </div>
             </div>
+
             <div className="grid grid-cols-5 grid-rows-3">
-              <div className="col-span-2 row-span-2 flex justify-center items-center p-2">
-                <img
-                  className="border border-[#ced0d4] rounded-lg h-72 w-72 hover:opacity-25"
-                  src={img1}
-                  alt=""
-                />
-              </div>
-              {images.map((image, index) => (
-                <div
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  key={index}
-                  className="flex justify-center items-center p-2"
-                >
-                  {/* {isHovered && <FaSquare />} */}
-                  <img
-                    className="border border-[#ced0d4] rounded-lg h-32 w-32 "
-                    src={image}
-                    alt=""
-                  />
-                </div>
-              ))}
+              <Draggable>
+                {images.map((image) =>
+                  image.id === min ? (
+                    <div
+                      key={image.id}
+                      className="col-span-2 row-span-2 flex justify-center items-center p-2"
+                    >
+                      <img
+                        className="border border-[#ced0d4] rounded-lg  hover:opacity-25"
+                        src={image.image}
+                        alt=""
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      key={image.id}
+                      className="flex justify-center items-center p-2"
+                    >
+                      <img
+                        className="border border-[#ced0d4] rounded-lg h-32 w-32 "
+                        src={image.image}
+                        alt=""
+                      />
+                    </div>
+                  )
+                )}
+              </Draggable>
             </div>
           </div>
         </div>
