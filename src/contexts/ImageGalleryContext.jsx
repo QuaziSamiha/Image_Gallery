@@ -71,6 +71,13 @@ export const ImageGalleryProvider = ({ children }) => {
     setTotalSelected(0);
   };
 
+  const reorderImages = (startIndex, endIndex) => {
+    const updatedImages = Array.from(images);
+    const [reorderedImage] = updatedImages.splice(startIndex, 1);
+    updatedImages.splice(endIndex, 0, reorderedImage);
+
+    setImages(updatedImages);
+  };
   const contextValue = {
     totalSelected,
     hoveredImage,
@@ -80,6 +87,7 @@ export const ImageGalleryProvider = ({ children }) => {
     handleAddImage,
     toggleImageSelection,
     deleteSelectedImages,
+    reorderImages,
   };
 
   return (
@@ -90,5 +98,5 @@ export const ImageGalleryProvider = ({ children }) => {
 };
 
 ImageGalleryProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Define the prop type for children
+  children: PropTypes.node.isRequired,
 };

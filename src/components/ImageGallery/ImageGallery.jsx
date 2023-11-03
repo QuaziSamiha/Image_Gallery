@@ -1,4 +1,3 @@
-// import { Draggable } from "react-drag-reorder";
 import Gallery from "./Gallery";
 import GalleryHeader from "./GalleryHeader";
 

@@ -1,5 +1,6 @@
 import { FaCheckSquare, FaImage, FaSquare } from "react-icons/fa";
 import { useImageGalleryContext } from "../../contexts/ImageGalleryContext";
+
 const Gallery = () => {
   const {
     hoveredImage,
@@ -10,6 +11,7 @@ const Gallery = () => {
     toggleImageSelection,
   } = useImageGalleryContext();
   const min = 1;
+
   return (
     <>
       {images.map((image) => (
