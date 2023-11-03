@@ -1,12 +1,13 @@
-// import ImageGallery from "../ImageGallery/ImageGallery";
-import ImageGallery2 from "../ImageGallery/ImageGallery2";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import { ImageGalleryProvider } from "../../contexts/ImageGalleryContext";
 
 const Home = () => {
   return (
     <>
       <section className="flex justify-center items-center">
-        {/* <ImageGallery /> */}
-        <ImageGallery2 />
+        <ImageGalleryProvider>
+          <ImageGallery />
+        </ImageGalleryProvider>
       </section>
     </>
   );
