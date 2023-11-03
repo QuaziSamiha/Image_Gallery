@@ -15,7 +15,6 @@ import { FaCheckSquare, FaImage, FaSquare } from "react-icons/fa";
 
 const ImageGallery2 = () => {
   const [totalSelected, setTotalSelected] = useState(0);
-  // const [isSelected, setIsSelected] = useState(false);
   const [hoveredImage, setHoveredImage] = useState(null);
   const min = 1;
   const [images, setImages] = useState([
@@ -31,7 +30,6 @@ const ImageGallery2 = () => {
     { id: 10, image: img10, selected: false },
     { id: 11, image: img11, selected: false },
   ]);
-  // const [newImageURL, setNewImageURL] = useState("");
   const [newImageId, setNewImageId] = useState(images.length + 1);
 
   // console.log(images);
@@ -74,38 +72,44 @@ const ImageGallery2 = () => {
   return (
     <>
       <div className="w-4/6">
-        <div className="bg-[#ecf1f6] h-screen p-8 flex justify-center items-center">
-          <div className="rounded-md bg-white py-4">
-            <div className="border-b-2 border-[#f2f2f3] h-12">
-              <div className="flex justify-between">
-                <div className="flex justify-center items-center text-bold">
-                  <div className="py-3 px-8">
+        <div className="bg-[#ecf1f6] h-full p-3 md:p-8 flex justify-center items-center">
+          <div className="rounded-md bg-white py-1 lg:py-4">
+            <div className="border-b-2 border-[#f2f2f3] h-14 sm:h-10 lg:h-12">
+              <div className="sm:flex justify-between">
+                <div className="flex justify-center justify-items-center text-bold">
+                  <div className="sm:py-1 lg:py-3 px-2 lg:px-8">
                     {totalSelected > 0 ? (
                       <>
-                        <h1>{totalSelected} Files Selected</h1>
+                        <h1 className="font-bold text-[#545556] text-base lg:text-lg flex items-center">
+                          <FaCheckSquare className="mr-2 text-[#3366ff]" />
+                          {totalSelected} Files Selected
+                        </h1>
                       </>
                     ) : (
                       <>
-                        {" "}
-                        <h1>Image Gallery</h1>
+                        <h1 className="font-bold text-[#545556] text-base lg:text-lg flex items-center">
+                          Image Gallery
+                        </h1>
                       </>
                     )}
                   </div>
                 </div>
                 <div className="flex justify-center items-center text-bold">
-                  <div className="py-3 px-8">
+                  <div className="sm:py-1 lg:py-3 px-8">
                     <button
                       onClick={deleteSelectedImages}
                       className={`${totalSelected > 0 ? "" : "hidden"}`}
                     >
-                      <small className="text-[#ef7464]">Delete Files</small>
+                      <small className="text-[#ef7464] font-semibold">
+                        Delete Files
+                      </small>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-5 grid-rows-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 grid-rows-3">
               {images.map((image) => (
                 <div
                   onMouseEnter={() => handleMouseEnter(image.id)}
@@ -119,14 +123,16 @@ const ImageGallery2 = () => {
                 >
                   <button onClick={() => toggleImageSelection(image.id)}>
                     {image.selected ? (
-                      <FaCheckSquare className="absolute top-6 left-6 text-[#3366ff]" />
+                      <FaCheckSquare className="absolute top-4 lg:top-6 left-7 lg:left-6 text-[#3366ff]" />
                     ) : hoveredImage === image.id ? (
-                      <FaSquare className="absolute top-6 left-6 text-white border border-[#828282]" />
+                      <FaSquare className="absolute text-sm top-4 lg:top-6 left-4 lg:left-6 text-white border border-[#828282]" />
                     ) : null}
                   </button>
                   <img
                     className={`${
-                      image.id === min ? "h-72 w-72" : "h-32 w-32"
+                      image.id === min
+                        ? "h-48 md:h-60 lg:h-72 w-48 md:w-60 lg:w-72"
+                        : "h-20 md:h-28 lg:h-32 w-20 md:w-28 lg:w-32"
                     } border border-[#ced0d4] rounded-lg`}
                     src={image.image}
                     alt=""
@@ -134,9 +140,9 @@ const ImageGallery2 = () => {
                 </div>
               ))}
               <button onClick={handleAddImage}>
-                <div className="flex justify-center items-center  p-2">
-                  <div className="border border-[#ced0d4] rounded-lg h-32 w-32">
-                    <FaImage className="h-6 w-6 my-5 mx-12" />
+                <div className="flex justify-center items-center text-sm  p-2">
+                  <div className="border border-[#ced0d4] rounded-lg h-20 md:h-28 lg:h-32 w-20 md:w-28 lg:w-32">
+                    <FaImage className="h-6 w-6 my-2 lg:my-5 mx-5 lg:mx-12" />
                     Add images
                   </div>
                 </div>
