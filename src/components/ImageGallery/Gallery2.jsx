@@ -34,7 +34,7 @@ export const ImageGalleryProvider = ({ children }) => {
     { id: 10, image: img10, selected: false },
     { id: 11, image: img11, selected: false },
   ];
-
+  const minId = Math.min(...initialImages.map((image) => image.id));
   const [images, setImages] = useState(initialImages);
 
   const handleMouseEnter = (imageId) => {
@@ -58,12 +58,9 @@ export const ImageGalleryProvider = ({ children }) => {
 
   const deleteSelectedImages = () => {
     const updatedImages = images.filter((image) => !image.selected);
-    updatedImages.map((im) => console.log(im.id));
     setImages(updatedImages);
     setTotalSelected(0);
   };
-
-  const minId = Math.min(...images.map((image) => image.id));
 
   const contextValue = {
     totalSelected,
