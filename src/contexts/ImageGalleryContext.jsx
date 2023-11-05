@@ -58,7 +58,6 @@ export const ImageGalleryProvider = ({ children }) => {
 
   const deleteSelectedImages = () => {
     const updatedImages = images.filter((image) => !image.selected);
-    updatedImages.map((im) => console.log(im.id));
     setImages(updatedImages);
     setTotalSelected(0);
   };
