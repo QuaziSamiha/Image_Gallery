@@ -27,4 +27,8 @@ Run Command: npm create vite@latest image-gallery -- --template react
 
 <!-- React Icon Installation -->
 
-1. run command: npm install react-icons --save
+1. run command: npm install react-icons --save -->
+
+<!-- React Draggable Added for Reordering  -->
+
+1. run command: npm i react-draggable
