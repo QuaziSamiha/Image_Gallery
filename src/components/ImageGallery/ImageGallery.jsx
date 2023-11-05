@@ -1,7 +1,5 @@
 import Gallery from "./Gallery";
-// import Gallery2 from "./Gallery2";
 import GalleryHeader from "./GalleryHeader";
-
 const ImageGallery = () => {
   return (
     <>
@@ -13,7 +11,6 @@ const ImageGallery = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 grid-rows-3">
               <Gallery />
-              {/* <Gallery2 /> */}
             </div>
           </div>
         </div>
